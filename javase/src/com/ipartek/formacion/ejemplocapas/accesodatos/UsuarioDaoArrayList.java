@@ -10,8 +10,13 @@ public class UsuarioDaoArrayList implements CrudAble<Usuario>{
 	private static final String YA_EXISTE_ESE_ID_DE_USUARIO = "Ya existe ese ID de usuario";
 	private static final String NO_EXISTE_ESE_ID = "No existe ese ID";
 	private static final String YA_EXISTE_ESE_EMAIL = "Ya existe ese email";
+	
 	private ArrayList<Usuario> usuarios = new ArrayList<>();
 	
+	public UsuarioDaoArrayList() {
+		usuarios.add(new Usuario(1L, "javier@lete.com", "contra"));
+		usuarios.add(new Usuario(2L, "pepe@gomez.com", "yepa"));
+	}
 	@Override
 	public List<Usuario> getAll() {
 		return usuarios;
@@ -53,8 +58,7 @@ public class UsuarioDaoArrayList implements CrudAble<Usuario>{
 		for(int i = 0; i<usuarios.size();i++) {
 			if(usuarios.get(i).getId() == usuario.getId()) {
 				posicionId = i;
-			}
-			if (usuarios.get(i).getEmail().equals(usuario.getEmail())) {
+			}else if (usuarios.get(i).getEmail().equals(usuario.getEmail())) {
 				throw new AccesoDatosException(YA_EXISTE_ESE_EMAIL);
 			}
 			
@@ -70,6 +74,7 @@ public class UsuarioDaoArrayList implements CrudAble<Usuario>{
 	public void delete(Long id) {
 		for(int i = 0; i < usuarios.size();i++) {
 			if(usuarios.get(i).getId() == id) {
+				System.out.println("Borrando " + usuarios.get(i));
 				usuarios.remove(i);
 				return;
 			}
