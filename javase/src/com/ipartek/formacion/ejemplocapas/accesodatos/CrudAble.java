@@ -7,5 +7,5 @@ public interface CrudAble<Pojo> {
 	public Pojo getById(Long id);
 	public void insert(Pojo pojo);
 	public void update(Pojo pojo);
-	public void delete(Pojo pojo);
+	public void delete(Long id);
 }
