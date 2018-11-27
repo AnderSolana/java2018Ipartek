@@ -47,7 +47,6 @@ public class UsuarioDaoArrayList implements CrudAble<Usuario>{
 				throw new AccesoDatosException(YA_EXISTE_ESE_EMAIL);
 			}
 		}
-		
 		usuarios.add(usuario);
 	}
 
@@ -66,6 +65,7 @@ public class UsuarioDaoArrayList implements CrudAble<Usuario>{
 		if (posicionId == -1) {
 			throw new AccesoDatosException(NO_EXISTE_ESE_ID);
 		}
+		System.out.println("Actualizando usuario " + usuarios.get(posicionId).getEmail());
 		usuarios.set(posicionId, usuario);
 		
 	}
