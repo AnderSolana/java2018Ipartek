@@ -12,6 +12,12 @@ public class Usuario {
 	
 	
 
+	public Usuario() {
+		
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
@@ -25,6 +31,14 @@ public class Usuario {
 	}
 
 	public void setEmail(String email) {
+		if (email == null || email.trim().length() == 0) {
+			throw new PojoException("No se admiten emails vacíos o nulos");
+		}
+		
+		if (!email.matches("\\w+@\\w+\\.\\w+")) {
+			throw new PojoException("El formato del email no es correcto");
+		}
+		
 		this.email = email;
 	}
 
