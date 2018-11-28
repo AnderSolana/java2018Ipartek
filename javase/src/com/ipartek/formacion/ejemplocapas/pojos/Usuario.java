@@ -9,6 +9,8 @@ public class Usuario {
 		setEmail(email);
 		setPassword(password);
 	}
+	
+	
 
 	public Long getId() {
 		return id;
