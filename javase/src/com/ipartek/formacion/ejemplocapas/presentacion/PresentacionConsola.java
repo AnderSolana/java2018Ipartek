@@ -12,8 +12,8 @@ public class PresentacionConsola {
 
 		usuarios.insert(pedirUsuario());
 
-		usuarios.insert(new Usuario(3L, "nuevo@nuevez.com", "pass"));
-		usuarios.update(new Usuario(3L, "nuevo@nuevez.com", "contras"));
+		usuarios.insert(new Usuario(3L, "nuevo@nuevez.com", "Pa$$w0rd"));
+		usuarios.update(new Usuario(3L, "nuevo@nueve.com", "Pa$$w0rd"));
 		usuarios.delete(2L);
 
 		for (Usuario usuario : usuarios.getAll()) {
@@ -43,7 +43,20 @@ public class PresentacionConsola {
 				System.err.println(e.getMessage());
 			}
 		} while (errorEmail);
-		usuario.setPassword(Consola.leerLinea("Contraseña"));
+
+		boolean errorPassword;
+		
+		do {
+			errorPassword = false;
+			
+			try {
+				usuario.setPassword(Consola.leerLinea("Contraseña"));
+			} catch (Exception e) {
+				errorPassword = true;
+				System.out.println(e.getMessage());
+			}
+			
+		} while(errorPassword);
 
 		// Usuario usuario = new Usuario(id, email, password);
 		return usuario;
