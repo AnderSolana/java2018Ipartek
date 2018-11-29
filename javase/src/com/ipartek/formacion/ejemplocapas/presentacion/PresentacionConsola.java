@@ -8,6 +8,22 @@ import com.ipartek.formacion.ejemplocapas.pojos.Usuario;
 public class PresentacionConsola {
 
 	public static void main(String[] args) {
+		String opcion;
+		
+		do {
+			// Podemos hacer un método para mostrar el menú
+			opcion = Consola.leerLinea("Elige una opción");
+			
+			switch(opcion) {
+			case "0": System.out.println("Salir"); break;
+			case "1": alta(); break;
+			case "2": modificacion(); break;
+			// TODO: otras opciones
+			default: System.out.println("No existe esa opción"); 
+			}
+		}while(!"0".equals(opcion));
+		
+		
 		CrudAble<Usuario> usuarios = new UsuarioDaoArrayList();
 
 		usuarios.insert(pedirUsuario());
@@ -26,6 +42,14 @@ public class PresentacionConsola {
 
 		// System.out.println(usuario);
 
+	}
+
+	private static void modificacion() {
+		System.out.println("Modificación");
+	}
+
+	private static void alta() {
+		System.out.println("Alta");
 	}
 
 	private static Usuario pedirUsuario() {
