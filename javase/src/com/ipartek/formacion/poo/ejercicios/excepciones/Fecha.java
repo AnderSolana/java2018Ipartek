@@ -1,14 +1,14 @@
 package com.ipartek.formacion.poo.ejercicios.excepciones;
 
 public class Fecha {
-	private int año = 0;
+	private int aÃ±o = 0;
 	private int mes = 1;
 	private int dia = 1;
 	
-	public static final int MESES_AÑO = 12;
+	public static final int MESES_AÃ‘O = 12;
 	
-	public static boolean esBisiesto(int año) {
-		if ((año % 4 == 0) && ((año % 100 != 0) || (año % 400 == 0))) {
+	public static boolean esBisiesto(int aÃ±o) {
+		if ((aÃ±o % 4 == 0) && ((aÃ±o % 100 != 0) || (aÃ±o % 400 == 0))) {
 			return true;
 		}else {
 			return false;
@@ -17,8 +17,8 @@ public class Fecha {
 	
 	public Fecha() {}
 	
-	public Fecha(int año, int mes, int dia) {
-		setAño(año);
+	public Fecha(int aÃ±o, int mes, int dia) {
+		setAÃ±o(aÃ±o);
 		setMes(mes);
 		setDia(dia);
 	}
@@ -28,7 +28,7 @@ public class Fecha {
 	}
 	
 	public boolean esBisiesto() {
-		if ((año % 4 == 0) && ((año % 100 != 0) || (año % 400 == 0))) {
+		if ((aÃ±o % 4 == 0) && ((aÃ±o % 100 != 0) || (aÃ±o % 400 == 0))) {
 			return true;
 		}else {
 			return false;
@@ -36,12 +36,12 @@ public class Fecha {
 		
 	}
 
-	public int getAño() {
-		return año;
+	public int getAÃ±o() {
+		return aÃ±o;
 	}
 
-	public void setAño(int año) {
-		this.año = año;
+	public void setAÃ±o(int aÃ±o) {
+		this.aÃ±o = aÃ±o;
 	}
 
 	public int getMes() {
@@ -62,14 +62,14 @@ public class Fecha {
 
 	public void setDia(int dia) {
 		if (dia < 1 || dia > 31) {
-			throw new FechaExcepcion("El día debe estar entre 1 y 31");
+			throw new FechaExcepcion("El dï¿½a debe estar entre 1 y 31");
 		}else {
 			this.dia = dia;
 		}
 	}
 	
-	public void set(int año, int mes, int dia) {
-		setAño(año);
+	public void set(int aÃ±o, int mes, int dia) {
+		setAÃ±o(aÃ±o);
 		setMes(mes);
 		setDia(dia);
 	}
@@ -80,7 +80,7 @@ public class Fecha {
 
 	@Override
 	public String toString() {
-		return "Fecha [año=" + año + ", mes=" + mes + ", dia=" + dia + "]";
+		return "Fecha [aÃ±o=" + aÃ±o + ", mes=" + mes + ", dia=" + dia + "]";
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class Fecha {
 		if (getClass() != obj.getClass())
 			return false;
 		Fecha other = (Fecha) obj;
-		if (año != other.año)
+		if (aÃ±o != other.aÃ±o)
 			return false;
 		if (dia != other.dia)
 			return false;

@@ -13,7 +13,7 @@ public class PruebaFecha {
 		 {
 		 try
 		 {
-		 Fecha f = new Fecha(random(1, 2007), random(1, Fecha.MESES_AÑO),
+		 Fecha f = new Fecha(random(1, 2007), random(1, Fecha.MESES_AÃ‘O),
 		random(1, 31));
 		 System.out.println("Fecha correcta: " + f.toString());
 		 }
