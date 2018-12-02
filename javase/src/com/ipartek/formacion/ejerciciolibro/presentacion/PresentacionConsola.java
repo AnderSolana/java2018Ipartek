@@ -1,8 +1,5 @@
 package com.ipartek.formacion.ejerciciolibro.presentacion;
 
-import java.io.Console;
-import java.util.Scanner;
-
 import com.ipartek.formacion.biblioteca.Consola;
 import com.ipartek.formacion.ejerciciolibro.accesodatos.CrudAble;
 import com.ipartek.formacion.ejerciciolibro.accesodatos.LibroDaoHashMap;
@@ -45,19 +42,33 @@ public class PresentacionConsola {
 				}
 				break;
 			case "2":
-						
+				Long id = Consola.leerLong("Introduce el ID");	
+				String titulo = Consola.leerLinea("Introduce el título");
+				String editorial = Consola.leerLinea("Introduce la editorial");
+				String isbn = Consola.leerLinea("Introduce el isbn");
+				double precio = Consola.leerLong("Introduce el precio");
+				Libro l1 = new Libro(id, titulo, editorial, isbn, precio);
+				libros.insert(l1);
 				break;
 			case "3":
-				
+				String lmod = Consola.leerLinea("Introduzca el ISBN del libro a modificar");
+				Libro libroMod = libros.getByIsbn(lmod);
+				libroMod.setTitulo(Consola.leerLinea("Introduzca el nuevo título"));
+				libroMod.setEditorial(Consola.leerLinea("Introduzca la nueva editorial"));
+				libroMod.setPrecio(Consola.leerLong("Introduzca el nuevo precio"));
+				libros.update(libroMod);
 				break;
 			case "4":
-				
+				String ldel = Consola.leerLinea("Introduzca el ISBN del libro a eliminar");
+				libros.delete(ldel);
 				break;
 			case "5":
-				
+				Long lid = Consola.leerLong("Introduzca el ID del libro a buscar");
+				System.out.println(libros.getById(lid));
 				break;
 			case "6":
-				
+				String bisbn = Consola.leerLinea("Introduzca el ISBN del libro a buscar");
+				System.out.println(libros.getByIsbn(bisbn));
 				break;
 			case "0":
 				System.out.println("Saliendo...");
