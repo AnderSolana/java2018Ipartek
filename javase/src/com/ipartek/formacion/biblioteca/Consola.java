@@ -58,14 +58,14 @@ public class Consola {
 		
 		mostrarMensaje(mensaje);
 		try {
-			//l = sc.nextLong();
+			
 			l = Double.parseDouble(sc.nextLine());
 		} catch (Exception e) {
-			//System.out.println(e);
+
 			System.err.println("El dato no es un número");
 			hayErrores = true;
 		}finally {
-			//sc.nextLine();
+
 		}
 		
 		}while(hayErrores);
