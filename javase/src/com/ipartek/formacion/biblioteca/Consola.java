@@ -2,10 +2,6 @@ package com.ipartek.formacion.biblioteca;
 
 import java.util.Scanner;
 
-import com.ipartek.formacion.ejerciciolibro.accesodatos.CrudAble;
-import com.ipartek.formacion.ejerciciolibro.accesodatos.LibroDaoHashMap;
-import com.ipartek.formacion.ejerciciolibro.pojos.Libro;
-
 public class Consola {
 	private static final String FORMATO = "[%s]:";
 	private static Scanner sc = new Scanner(System.in);
@@ -53,36 +49,31 @@ public class Consola {
 		return leerLong(null);
 	}
 	
-	public static Libro obtenerDatos() {
-		CrudAble<Libro> libros = new LibroDaoHashMap();
-		
-		
-		Long id = Consola.leerLong("Introduce el ID");	
+	public static Double leerDouble(String mensaje) {
+		boolean hayErrores;
+		Double l = null;
 		
 		do {
-			
-			System.err.println("Ese ID ya existe");
-			id = Consola.leerLong("Introduce el ID");
-			
-		}while (libros.getById(id) != null);
+		hayErrores = false;
 		
-		String titulo = Consola.leerLinea("Introduce el título");
+		mostrarMensaje(mensaje);
+		try {
+			//l = sc.nextLong();
+			l = Double.parseDouble(sc.nextLine());
+		} catch (Exception e) {
+			//System.out.println(e);
+			System.err.println("El dato no es un número");
+			hayErrores = true;
+		}finally {
+			//sc.nextLine();
+		}
 		
-		String editorial = Consola.leerLinea("Introduce la editorial");
-		
-		String isbn = Consola.leerLinea("Introduce el isbn");
-		
-		do {
-			
-			System.err.println("Ese ISBN ya existe");
-			isbn = Consola.leerLinea("Introduce el ISBN");
-			
-		}while (libros.getByIsbn(isbn) != null);
-		
-		long precio = Consola.leerLong("Introduce el precio") ;
-		
-		Libro l1 = new Libro(id, titulo, editorial, isbn, precio);
-		
-		return l1; 
+		}while(hayErrores);
+		return l;
 	}
+	
+	public static Double leerDouble() {
+		return leerDouble(null);
+	}
+	
 }

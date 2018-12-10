@@ -35,9 +35,9 @@ public class LibroDaoHashMap implements CrudAble<Libro> {
 	}
 
 	@Override
-	public void insert(Libro libro) {
+	public Libro insert(Libro libro) {
 		libros.put(libro.getIsbn(), libro);
-		
+		return libro;
 	}
 
 	@Override

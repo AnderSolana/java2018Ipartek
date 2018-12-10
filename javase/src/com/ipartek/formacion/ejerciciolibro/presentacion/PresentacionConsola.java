@@ -36,8 +36,11 @@ public class PresentacionConsola {
 				}
 				break;
 			case "2":
-				Libro l1 = Consola.obtenerDatos();
-				libros.insert(l1);
+				if (obtenerDatos(libros)) {
+					System.out.println("El libro se ha insertado correctamente");
+				}else {
+					System.err.println("Ha ocurrido algún ERROR en la inserción");
+				}
 				break;
 			case "3":
 				String modOpcion = Consola.leerLinea("Pulse 1 para buscar por ID y 2 para buscar por ISBN");
@@ -110,11 +113,21 @@ public class PresentacionConsola {
 				break;
 			case "5":
 				Long lid = Consola.leerLong("Introduzca el ID del libro a buscar");
-				System.out.println(libros.getById(lid));
+				if (libros.getById(lid) != null) {
+					System.out.println(libros.getById(lid));
+				}else {
+					System.err.println("No existe ningún libro con ese ID\n");
+				}
+				
 				break;
 			case "6":
 				String bisbn = Consola.leerLinea("Introduzca el ISBN del libro a buscar");
-				System.out.println(libros.getByIsbn(bisbn));
+				if (libros.getByIsbn(bisbn) != null) {
+					System.out.println(libros.getByIsbn(bisbn));
+				}else {
+					System.err.println("No existe ningún libro con ese ISBN\n");
+				}
+				
 				break;
 			case "0":
 				System.out.println("Saliendo...");
@@ -126,6 +139,40 @@ public class PresentacionConsola {
 			}
 		} while (!"0".equals(opcion));
 
+	}
+
+	private static boolean obtenerDatos(CrudAble<Libro> libros) {
+		Long id = Consola.leerLong("Introduce el ID");	
+		
+		do {
+			
+			System.err.println("Ese ID ya existe");
+			id = Consola.leerLong("Introduce el ID");
+			
+		}while (libros.getById(id) != null);
+		
+		String titulo = Consola.leerLinea("Introduce el título");
+		
+		String editorial = Consola.leerLinea("Introduce la editorial");
+		
+		String isbn = Consola.leerLinea("Introduce el isbn");
+		
+		do {
+			
+			System.err.println("Ese ISBN ya existe");
+			isbn = Consola.leerLinea("Introduce el ISBN");
+			
+		}while (libros.getByIsbn(isbn) != null);
+		
+		double precio = Consola.leerDouble("Introduce el precio");
+		
+		Libro l1 = new Libro(id, titulo, editorial, isbn, precio);
+		
+		
+		if (libros.insert(l1) != null) {
+			return true;
+		}
+		return false;
 	}
 
 }
