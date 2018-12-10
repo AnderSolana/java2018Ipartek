@@ -143,26 +143,22 @@ public class PresentacionConsola {
 
 	private static boolean obtenerDatos(CrudAble<Libro> libros) {
 		Long id = Consola.leerLong("Introduce el ID");	
-		
-		do {
-			
+		while (libros.getById(id) != null) {
 			System.err.println("Ese ID ya existe");
 			id = Consola.leerLong("Introduce el ID");
-			
-		}while (libros.getById(id) != null);
+		}
+		
 		
 		String titulo = Consola.leerLinea("Introduce el título");
 		
 		String editorial = Consola.leerLinea("Introduce la editorial");
 		
 		String isbn = Consola.leerLinea("Introduce el isbn");
-		
-		do {
-			
+		while (libros.getByIsbn(isbn) != null) {
 			System.err.println("Ese ISBN ya existe");
-			isbn = Consola.leerLinea("Introduce el ISBN");
-			
-		}while (libros.getByIsbn(isbn) != null);
+			isbn = Consola.leerLinea("Introduce el isbn");
+		}
+		
 		
 		double precio = Consola.leerDouble("Introduce el precio");
 		
