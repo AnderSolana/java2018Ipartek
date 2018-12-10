@@ -32,22 +32,13 @@ public class PresentacionConsola {
 			
 			switch (opcion) {
 			case "1":
-				System.err.println("---------------------------");
-				System.err.println("---------------------------");
 				System.out.println("LISTADO de todos los libros: ");
 				for (Libro libro : libros.getAll().values()) {
 					System.out.println(libro);
-					System.err.println("---------------------------");
-					System.err.println("---------------------------");
 				}
 				break;
 			case "2":
-				Long id = Consola.leerLong("Introduce el ID");	
-				String titulo = Consola.leerLinea("Introduce el título");
-				String editorial = Consola.leerLinea("Introduce la editorial");
-				String isbn = Consola.leerLinea("Introduce el isbn");
-				double precio = Consola.leerLong("Introduce el precio");
-				Libro l1 = new Libro(id, titulo, editorial, isbn, precio);
+				Libro l1 = Consola.obtenerDatos();
 				libros.insert(l1);
 				break;
 			case "3":
